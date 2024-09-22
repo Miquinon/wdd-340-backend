@@ -4,6 +4,6 @@
 *:after {
   box-sizing: border-box;
 }
-.siteNmae, .tools{
+.siteNmae a, .tools a{
   font-family: Arial, Helvetica, sans-serif;
 }
