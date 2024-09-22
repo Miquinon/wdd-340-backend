@@ -4,6 +4,58 @@
 *:after {
   box-sizing: border-box;
 }
-#top-header a{
+
+/******* MOBILE VERSION ************/
+
+/* HEADER */
+
+#top-header{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.siteName a{
   font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#tools a{
+  display: flex;
+  font-size: large;
+  text-decoration: none;
+  color: black;
+  
+}
+
+/* NAVIGATION*/
+
+nav{
+  background-color: black;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav ul{
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  color: white;
+  font-size: 20px;
+  margin: 5px;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+
+/* BODY */
+
+h1{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  margin-top: 20px;
 }
