@@ -22,7 +22,7 @@ app.set("layout", "./layouts/layout")
 app.use(static)
 
 /* Index Route */
-app.get("/", function(req, res){res.render("index", {title: "Home"})})
+app.get("/cars", function(req, res){res.render("index", {title: "Home"})})
 
 /* ***********************
  * Local Server Information
