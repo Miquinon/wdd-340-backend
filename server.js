@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const inventoryRoute = require("../controllers/invController")
 const baseController = require("./controllers/baseController")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
@@ -24,6 +25,10 @@ app.use(static)
 
 /* Index Route */
 app.get("/", baseController.buildHome)
+
+// Inventory routes
+app.use("/inv", inventoryRoute)
+
 
 /* ***********************
  * Local Server Information
