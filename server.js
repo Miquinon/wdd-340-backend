@@ -5,7 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
-const inventoryRoute = require("../controllers/invController")
+const inventoryRoute = require('./routes/inventoryRoute');
 const baseController = require("./controllers/baseController")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
