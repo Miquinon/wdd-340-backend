@@ -19,6 +19,10 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") 
 
+
+/* Serve static files */
+app.use(express.static('public'))
+
 /* ***********************
  * Routes
  *************************/
@@ -31,9 +35,18 @@ app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
 
 // File Not Found Route - must be last route in list
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+app.use(async (err, req, res, next) => {
+  const nav = await utilities.getNav(); 
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  
+  let message = err.status === 404 ? err.message : 'Oh no! You took a wrong turn. Maybe try a different route?';
+  
+  res.status(err.status || 500).render("errors/error", {
+      title: err.status || 'Server Error',
+      message,
+      nav,
+  });
+});
 
 
 /* ***********************

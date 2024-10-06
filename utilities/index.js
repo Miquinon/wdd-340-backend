@@ -29,10 +29,18 @@ Util.getNav = async function (req, res, next) {
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+// In utilities/index.js
 
-module.exports = Util
+Util.handleErrors = (fn) => (req, res, next) => {
+  return Promise.resolve(fn(req, res, next)).catch((err) => {
+      console.error("Error caught in utility:", err);
+      next(err); 
+  });
+};
+
+module.exports = Util;
+
 
 
 
@@ -68,3 +76,20 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* Build html view for vehicle id*/
+
+Util.buildVehicleDetails = function(vehicle) {
+  let details = `
+    <h1>${vehicle.inv_make} ${vehicle.inv_model}</h1>
+    <img src="/images/vehicles/${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
+    <h2>Year: ${vehicle.inv_year}</h2>
+    <h2>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</h2>
+    <h2>Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</h2>
+    <h2>Color: ${vehicle.inv_color}</h2>
+    <p>${vehicle.inv_description}</p>
+  `;
+  return details;
+}
+
+

@@ -48,7 +48,7 @@ nav{
   background-color: black;
   padding: 10px;
   
-}
+} 
 
 nav ul {
   display: flex;
@@ -69,6 +69,11 @@ nav li a {
 h1, h2{
   font-size: 20px;
   margin-top: 20px;
+}
+
+main h1{
+  font-size: 30px;
+  text-align: center;
 }
 
 .under img{
@@ -143,10 +148,41 @@ span a{
   justify-content: center;
 }
 
+#views{
+  margin: 20px;
+}
+
+#views img{
+  width: 200px;
+  height: 150px;
+  border: 2PX solid #1857E0;
+  border-radius: 20px;
+  
+
+}
+#inv-display{
+list-style: none;
+padding: 20px;
+}
+
+#inv-display a{
+  text-decoration: none;
+}
+
+
+hr{
+  border: none;
+  border-bottom: 2px solid #1857E0;
+}
+
+
 /****************** DESKTOP VIEW **********/
 
 @media only screen and (min-width: 768px){
 
+  nav{
+    background-color: black;
+  }
   body {
     background-size: 100px 100px;
     background-position: 0 0, 0 0, -50px -50px, 50px 50px;
@@ -260,15 +296,55 @@ span a{
     display: grid;
     list-style: none;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     column-gap: 20px;
     row-gap: 20px;
-    justify-content: center;
-    align-items: center;
+  }
+
+  #inv-display li a{
+    justify-items: center;
   }
 
   hr{
     border: none
   }
   
+#views{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px;
+  column-gap: 15px;
+  justify-items: center;
+  }
+
+  #views img{
+    grid-column: 1/2;
+    grid-row: 1/ span 4;
+    width: 500px;
+    height: 250px;
+    border: 2PX solid #1857E0;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+#views h2{
+  grid-column: 2/2;
+  margin-bottom: 0;
+  margin-top: 25px;
+  
+}
+
+#views p{
+  grid-column: 1/2;
+  grid-row: 5/7;
+}
+
+#views h1{
+  margin-bottom: 0;
+}
+
+
+
+
+
+
 }
