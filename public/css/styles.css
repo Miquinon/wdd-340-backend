@@ -11,7 +11,7 @@ h1, h2{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-p, a, nav, li{
+p, a, nav, li, input, label{
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -342,9 +342,46 @@ hr{
   margin-bottom: 0;
 }
 
+/* Login Screen*/
 
+fieldset{
+  width: 300px;
+  height: 275px;
+  position: relative;
+  left: 425px;
+  background-color: #1857E0;
+  color: white;
+}
 
+form{
+  margin: 20px;
+}
 
+input, label{
+  display: block;
+  font-size: 20px;
+}
+
+fieldset p{
+  font-size: 20px;
+  text-align: center;
+}
+
+#pw, #email{
+  width:250px;
+}
+label{
+  padding:5px;
+  margin-top: 10px;
+}
+
+#submit{
+  margin-top: 10px;
+}
+
+.sign-up{
+  color: white;
+}
 
 
 }
