@@ -346,11 +346,12 @@ hr{
 
 fieldset{
   width: 300px;
-  height: 275px;
+  height: 300px;
   position: relative;
   left: 425px;
   background-color: #1857E0;
   color: white;
+  border: 2px solid black;
 }
 
 form{
@@ -367,7 +368,7 @@ fieldset p{
   text-align: center;
 }
 
-#pw, #email{
+#pw, #email, #fname, #lname{
   width:250px;
 }
 label{
@@ -376,12 +377,28 @@ label{
 }
 
 #submit{
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid black;
+
 }
 
 .sign-up{
   color: white;
 }
 
+/* Register Form*/
+#register{
+  width:300px;
+  height:400px;
+}
+
+#sub-reg{
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid black;
+}
 
 }

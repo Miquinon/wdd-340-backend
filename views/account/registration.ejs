@@ -1,0 +1,21 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+    <%# messages() %> 
+<fieldset id="register">
+    <form>
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" required>
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="pw">Password</label>
+        <input type="password" id="pw" name="pw" pattern="(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@\(!\)!%*#?&]){12,}">
+        <input type="submit" id="sub-reg" value="Register">
+    </form> 
+   
+</fieldset>

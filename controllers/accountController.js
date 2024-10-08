@@ -5,8 +5,8 @@ const utilities = require("../utilities/");
 * *************************************** */
 async function getMyAccount(req, res, next) {
     let nav = await utilities.getNav();
-    res.render('account/login', {  // Reusing the 'login.ejs' file
-      title: "My Account",         // Changing the title for the "My Account" view
+    res.render('account/login', {  
+      title: "My Account",         
       nav,
     });
 }
@@ -17,9 +17,20 @@ async function getMyAccount(req, res, next) {
 async function buildLogin(req, res, next) {
     let nav = await utilities.getNav();
     res.render('account/login', {
-      title: "Login",              // Title for the login page
+      title: "Login",              
       nav,
     });
 }
 
-module.exports = { buildLogin, getMyAccount };
+
+/* Deliver sign-up view*/ 
+
+async function buildRegister(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render('account/registration', {
+      title: "Register",
+      nav,
+  });
+}
+
+module.exports = { buildLogin, getMyAccount, buildRegister };

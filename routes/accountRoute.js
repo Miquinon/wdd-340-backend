@@ -10,6 +10,9 @@ router.get('/login', accountController.buildLogin);
 // This route for My Account
 router.get('/', accountController.getMyAccount); 
 
+//This route will call the function from account controller
+router.get('/register', accountController.buildRegister);
+
 // Error-handling middleware
 router.use((err, req, res, next) => {
   console.error(err.stack);
