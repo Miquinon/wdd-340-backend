@@ -16,6 +16,7 @@ const static = require("./routes/static")
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require('./routes/accountRoute');
+const bodyParser = require("body-parser")
 
 
 /* ***********************
@@ -50,6 +51,10 @@ app.set("layout", "./layouts/layout")
 
 /* Serve static files */
 app.use(express.static('public'))
+
+// for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 /* ***********************
  * Routes
@@ -93,7 +98,8 @@ app.use(async (err, req, res, next) => {
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
-    nav
+    nav,
+    errors: null
   })
 })
 

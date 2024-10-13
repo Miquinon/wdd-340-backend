@@ -42,7 +42,7 @@ async function getVehicleById(inv_id) {
   }
 }
 
-// module.exports 
+// module exports 
 
 module.exports = {
   getClassifications,

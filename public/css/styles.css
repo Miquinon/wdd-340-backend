@@ -346,7 +346,7 @@ hr{
 
 fieldset{
   width: 300px;
-  height: 300px;
+  height: 400px;
   position: relative;
   left: 425px;
   background-color: #1857E0;
@@ -391,7 +391,7 @@ label{
 /* Register Form*/
 #register{
   width:300px;
-  height:400px;
+  height:500px;
 }
 
 #sub-reg{
@@ -399,6 +399,33 @@ label{
   padding: 10px;
   background-color: white;
   border: 2px solid black;
+}
+
+.notice li{
+  list-style: none;
+  text-align: center;
+  font-size: 20px;
+}
+.notice{
+  padding-left: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+input:required:invalid, input:focus:invalid {
+  background-color: pink;
+ }
+
+ input:required:valid {
+  background-color: lightgreen;
+ }
+
+.pw-requirements{
+  padding-top: 15px;
+}
+
+#email_account{
+  font-size: 15px;
 }
 
 }
