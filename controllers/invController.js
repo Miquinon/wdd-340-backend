@@ -47,6 +47,39 @@ invCont.buildByVehicleId = utilities.handleErrors(async (req, res, next) => {
 });
 
 
+/* ***************************
+ *  Build add-classification view
+ * ************************** */
+invCont.buildAddClassification = utilities.handleErrors(async (req, res, next) => {
+  const nav = await utilities.getNav()
+  res.render("inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: null,
+  })
+});
+
+/* ***************************
+*  Process classification submission
+* ************************** */
+invCont.addClassification = utilities.handleErrors(async (req, res, next) => {
+  const { classification_name } = req.body
+  const nav = await utilities.getNav()
+
+  // Insert classification into the database
+  const result = await invModel.addClassification(classification_name)
+
+  if (result) {
+      req.flash("notice", `New classification "${classification_name}" has been added.`)
+      res.status(201).render("inventory/management", { title: "Inventory Management", nav, flash: req.flash() })
+  } else {
+      req.flash("notice", "Sorry, the insertion failed.")
+      res.status(500).render("inventory/add-classification", { title: "Add Classification", nav, errors: null })
+  }
+});
+
+
+
 // Intentionally causing an error
 
 invCont.causeServerError = (req, res, next) => {

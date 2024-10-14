@@ -19,10 +19,28 @@ router.get('/register', accountController.buildRegister);
 //Route for registration data and Process the registration data
 router.post(
   "/register",
-  regValidate.registationRules(),
-  regValidate.checkRegData,
+  regValidate.validate.registationRules(),
+  regValidate.validate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 )
+
+//Route to post login 
+router.post("/login",
+  regValidate.loginValidate.loginRules(),
+  regValidate.loginValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
+
+// Process the login attempt
+router.post(
+  "/login",
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
+
+
 
 // Error-handling middleware
 router.use((err, req, res, next) => {
