@@ -5,6 +5,8 @@ const invController = require("../controllers/invController")
 const validate = require('../utilities/inventory-validation')
 const utilities = require("../utilities/");
 
+console.log(invController.getAddInventory); 
+
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
@@ -24,6 +26,12 @@ router.post("/add-classification",
   validate.checkClassificationData, 
   invController.addClassification);
 
+// Route for add-inventory page
+router.get("/add-inventory", utilities.handleErrors(invController.buildInventory));
+
+
+//route to process add inventory form
+router.post('/add-inventory', invController.addInventory);
 
 // Intentional 500 Error Route
 router.get("/cause-error", invController.causeServerError);

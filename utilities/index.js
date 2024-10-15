@@ -118,3 +118,13 @@ Util.buildVehicleDetails = function(vehicle) {
 }
 
 
+// utilities.js
+async function getInv() {
+  try {
+    const result = await invModel.getAllInventory(); // Example function call, adjust as necessary
+    return result.rows;
+  } catch (error) {
+    console.error("Error fetching inventory:", error);
+    return []; // Return an empty array or handle the error as needed
+  }
+}

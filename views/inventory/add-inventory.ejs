@@ -13,13 +13,12 @@
 
     <fieldset id="add-inventory">
         <form action="/inv/add-inventory" method="POST">
-            <select id="classification" name="classification_id" required>
+            <select id="classification" name="classification_id" required value="locals.classification_id">
                 <% for(var i=0; i<classification.rowCount; i++) {%>
                 <% var selected = ( locals.classification_id == classification.rows[i].classification_id ) ? "selected" : ""; %>
-                 <option value="<%= classification.rows[i].classification_id %>" <%= selected %> >
-                    <%= classification.rows[i].classification_name %>
-                 </option>
-                <% } %>
+                <option value="<%= classification.rows[i].classification_id %>" <%= selected %> >
+                <%= classification.rows[i].classification_name %>
+                 </option><% } %>
             </select>
             <label for="make">Make</label>
             <input type="text" id="make" name="inv_make" value="<%= locals.inv_make %>" required placeholder="3 character minimum">
