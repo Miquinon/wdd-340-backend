@@ -57,7 +57,7 @@ invCont.buildAddClassification = utilities.handleErrors(async (req, res, next) =
       nav,
       errors: null,
   })
-});
+})
 
 /* ***************************
 *  Process classification submission
@@ -76,6 +76,18 @@ invCont.addClassification = utilities.handleErrors(async (req, res, next) => {
       req.flash("notice", "Sorry, the insertion failed.")
       res.status(500).render("inventory/add-classification", { title: "Add Classification", nav, errors: null })
   }
+})
+
+/* ***************************
+ *  Render the management view
+ * ************************** */
+invCont.buildManagementView = utilities.handleErrors(async (req, res, next) => {
+  let nav = await utilities.getNav();
+  res.render("inventory/management", {
+      title: "Inventory Management",
+      nav,
+      errors: null,
+  });
 });
 
 
