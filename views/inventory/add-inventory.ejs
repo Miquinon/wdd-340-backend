@@ -11,42 +11,39 @@
        </ul>
       <% } %>
 
-    <fieldset id="add-inventory">
-        <form action="/inv/add-inventory" method="POST">
-            <select id="classification" name="classification_id" required value="locals.classification_id">
-                <% for(var i=0; i<classification.rowCount; i++) {%>
-                <% var selected = ( locals.classification_id == classification.rows[i].classification_id ) ? "selected" : ""; %>
-                <option value="<%= classification.rows[i].classification_id %>" <%= selected %> >
-                <%= classification.rows[i].classification_name %>
-                 </option><% } %>
-            </select>
-            <label for="make">Make</label>
-            <input type="text" id="make" name="inv_make" value="<%= locals.inv_make %>" required placeholder="3 character minimum">
+ 
+ <fieldset id="add-inventory">        
+    <form action="/inv/add-inventory" method="POST">   
 
-            <label for="model">Model</label>
-            <input type="text" id="model" name="inv_model" value="<%= locals.inv_model %>" required placeholder="3 character minimum">
-
-            <label for="description">Description</label>
-            <textarea id="inv_description" name="inv_description" value="<%= locals.inv_description %> required" 
-                placeholder="Write description here">
-            </textarea>
-
-            <label for="image-path">Image Path</label>
-            <input type="text" id="image" name="inv_image" value="<%= locals.inv_image %>" required placeholder="/images/vehicles/no-image.png">
-
-            <label for="tn-path">Thumbnail Path</label>
-            <input type="text" id="image" name="inv_image" value="<%= locals.inv_image %>" required placeholder="/images/vehicles/no-image-tn.png">
-
-            <label for="price">Price</label>
-            <input type="number" name="price" id="price" value="<%= locals.inv_price %>" required>
-
-            <label for="year">Year</label>
-            <input type="number" name="year" id="year" value="<%= local.inv_year %>" required>
-
-            <label for="miles">Miles</label>
-            <input type="number" name="miles" id="miles" value="<%= locals.inv_miles %>" required>
-
-            <label for="color">Color</label>
-            <input type="text" name="color" id="color" value="<%= locals.inv_color %>" required>
+         <label for="classificationList">Classification</label>           
+          <%- classificationSelect %>                        
+         <label for="make">Make</label>            
+         <input type="text" id="make" name="inv_make" value="<%= locals.inv_make %>" required placeholder="3 character minimum">            
+         
+         <label for="model">Model</label>            
+         <input type="text" id="model" name="inv_model" value="<%= locals.inv_model %>" required placeholder="3 character minimum">            
+         
+         <label for="description">Description</label>            
+         <textarea id="inv_description" name="inv_description" value="<%= locals.inv_description %> required" placeholder="Write description here"></textarea>           
+         
+         <label for="image-path">Image Path</label>            
+         <input type="text" id="image" name="inv_image" value="<%= locals.inv_image %>" required placeholder="/images/vehicles/no-image.png">            
+         
+         <label for="tn-path">Thumbnail Path</label>           
+         <input type="text" id="image" name="inv_image" value="<%= locals.inv_image %>" required placeholder="/images/vehicles/no-image-tn.png">           
+        
+         <label for="price">Price</label>            
+        <input type="number" name="price" id="price" value="<%= locals.inv_price %>" required>           
+        
+        <label for="year">Year</label>            
+        <input type="number" name="year" id="year" value="<%= locals.inv_year %>" required>            
+        
+        <label for="miles">Miles</label>            
+        <input type="number" name="miles" id="miles" value="<%= locals.inv_miles %>" required>           
+        
+        <label for="color">Color</label>            
+        <input type="text" name="color" id="color" value="<%= locals.inv_color %>" required>    
+    
+        <input type="submit" id="submit-inv" value="Submit Inventory">
 
     </fieldset>  

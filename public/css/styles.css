@@ -360,11 +360,11 @@ form{
 
 input, label{
   display: block;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 fieldset p{
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
 }
 
@@ -427,5 +427,35 @@ input:required:invalid, input:focus:invalid {
 #email_account{
   font-size: 15px;
 }
+
+/* add inventory form*/
+
+#add-inventory{
+  width: 325px;
+  height: 975px;
+}
+
+#inv_description{
+  width: 250px;
+  height: 200px;
+}
+
+#submit-inv{
+  margin-top: 20px;
+  width: 250px;
+  height: 30px;
+}
+
+#add-inventory input{
+  width: 250px;
+}
+
+#classificationList{
+  width: 250px;
+  height: 30px;
+}
+
+
+
 
 }

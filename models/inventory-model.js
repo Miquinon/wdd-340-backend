@@ -62,7 +62,7 @@ async function addClassification(classification_name) {
  *  add inventory submission
  * ************************** */
 
-async function processAddInventory(req, res) {
+async function addInventory(req, res) {
   try {
       const { inv_make, inv_model, inv_year, inv_price, inv_description, inv_image, inv_thumbnail, classification_id } = req.body;
       
@@ -107,6 +107,6 @@ module.exports = {
   getInventoryByClassificationId,
   getVehicleById,
   addClassification,
-  processAddInventory
+  addInventory
 }
 

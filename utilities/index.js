@@ -48,6 +48,17 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+// utilities.js
+async function getInv() {
+  try {
+    const result = await invModel.getAllInventory(); // Example function call, adjust as necessary
+    return result.rows;
+  } catch (error) {
+    console.error("Error fetching inventory:", error);
+    return []; // Return an empty array or handle the error as needed
+  }
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -64,7 +75,7 @@ Util.handleErrors = (fn) => (req, res, next) => {
   });
 };
 
-module.exports = Util;
+module.exports = Util, getInv;
 
 
 
@@ -118,13 +129,4 @@ Util.buildVehicleDetails = function(vehicle) {
 }
 
 
-// utilities.js
-async function getInv() {
-  try {
-    const result = await invModel.getAllInventory(); // Example function call, adjust as necessary
-    return result.rows;
-  } catch (error) {
-    console.error("Error fetching inventory:", error);
-    return []; // Return an empty array or handle the error as needed
-  }
-}
+
