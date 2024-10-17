@@ -112,7 +112,7 @@ invCont.addInventory = async function (req, res, next) {
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
   const nav = await utilities.getNav()
   const classification = await invModel.getClassifications();
-  const classificationList = utilities.buildClassificationList();
+  const classificationSelect = utilities.buildClassificationList();
   try {
     const data = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
     if (data) {
@@ -124,7 +124,7 @@ invCont.addInventory = async function (req, res, next) {
         title: 'Inventory Management',
         nav,
         classification,
-        classificationList,
+        classificationSelect,
         flash: req.flash(),
         errors: null,
       });
@@ -134,7 +134,7 @@ invCont.addInventory = async function (req, res, next) {
         title: " Add Inventory",
         nav,
         classification,
-        classificationList,
+        classificationSelect,
         inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
         flash: req.flash(),
         errors: null,
@@ -147,7 +147,7 @@ invCont.addInventory = async function (req, res, next) {
       title: "Add Inventory - Error",
       nav,
       classification,
-      classificationList,
+      classificationSelect,
       inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
       flash: req.flash(),
       errors: null,
