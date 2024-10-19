@@ -1,7 +1,7 @@
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const utilities = require('./index');
-// const invModel = require("../models/inventory-model");
+
 
 
 /*  **********************************
@@ -28,7 +28,7 @@ validate.checkClassificationData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         const nav = await utilities.getNav()
         res.render("inventory/add-classification", {
-            errors: errors.array(),
+            errors,
             title: "Add Classification",
             nav,
         })

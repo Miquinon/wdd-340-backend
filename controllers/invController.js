@@ -64,17 +64,26 @@ invCont.buildAddClassification = utilities.handleErrors(async (req, res, next) =
 * ************************** */
 invCont.addClassification = utilities.handleErrors(async (req, res, next) => {
   const { classification_name } = req.body
-  const nav = await utilities.getNav()
+  let nav = await utilities.getNav()
 
   // Insert classification into the database
-  const result = await invModel.addClassification(classification_name)
+  const insertResult = await invModel.addClassification(classification_name)
 
-  if (result) {
-      req.flash("notice", `New classification "${classification_name}" has been added.`)
-      res.status(201).render("inventory/management", { title: "Inventory Management", nav, flash: req.flash() })
+  if (insertResult) {
+    nav = await utilities.getNav()
+    req.flash("message success", `The ${insertResult.classification_name} classification was successfully added.`)
+    res.status(201).render("inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      errors: null,
+    })
   } else {
-      req.flash("notice", "Sorry, the insertion failed.")
-      res.status(500).render("inventory/add-classification", { title: "Add Classification", nav, errors: null })
+    req.flash("message warning", "Sorry, the insert failed.")
+    res.status(501).render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    })
   }
 })
 
@@ -108,53 +117,55 @@ invCont.buildInventory = async function (req, res, next) {
     
 
 
-invCont.addInventory = async function (req, res, next) {
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
-  const nav = await utilities.getNav()
-  const classification = await invModel.getClassifications();
-  const classificationSelect = utilities.buildClassificationList();
-  try {
-    const data = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
-    if (data) {
-      req.flash(
-        "notice",
-        `Congratulations, you did it!`
-      )
-      res.status(201).render("inventory/management", {
-        title: 'Inventory Management',
+  invCont.addInventory = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    const {
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id,
+    } = req.body
+  
+    const classificationSelect = utilities.buildClassificationList();
+    try {
+      const data = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+      if (data) {
+        req.flash("message success", `The ${inv_make} ${inv_model} was successfully added.`)
+        res.status(201).render("inventory/management", {
+          title: 'Inventory Management',
+          nav,
+          classificationSelect,
+          errors: null,
+        });
+      } else {
+        req.flash("message warning", "Sorry, you did not make a new inventory.")
+        res.status(501).render("inventory/add-inventory", {
+          title: " Add Inventory",
+          nav,
+          classificationSelect,
+          inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
+          errors: null,
+        })
+      }
+    } catch (error) {
+      console.error("addInventory error: ", error);
+      req.flash("message warning", 'Sorry, there was an error processing the inventory.')
+      res.status(500).render("inventory/add-inventory", {
+        title: "Add Inventory - Error",
         nav,
-        classification,
-        classificationSelect,
-        flash: req.flash(),
-        errors: null,
-      });
-    } else {
-      req.flash("notice", "Sorry, you did not make a new inventory.")
-      res.status(501).render("inventory/add-inventory", {
-        title: " Add Inventory",
-        nav,
-        classification,
         classificationSelect,
         inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
-        flash: req.flash(),
         errors: null,
-      })
+      });
     }
-  } catch (error) {
-    console.error("addInventory error: ", error);
-    req.flash("notice", 'Sorry, there was an error processing the inventory.')
-    res.status(500).render("inventory/add-inventory", {
-      title: "Add Inventory - Error",
-      nav,
-      classification,
-      classificationSelect,
-      inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
-      flash: req.flash(),
-      errors: null,
-    });
-  }
-};
-
+  };
+  
 
 // Intentionally causing an error
 

@@ -66,7 +66,7 @@ app.use('/account', accountRoute)
 
 
 /* Index Route */
-app.get("/", baseController.buildHome)
+app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
@@ -90,7 +90,8 @@ app.use(async (err, req, res, next) => {
 * Express Error Handler
 * Place after all other middleware
 *************************/
-app.get("/", utilities.handleErrors(baseController.buildHome))
+// app.get("/", utilities.handleErrors(baseController.buildHome))
+
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)

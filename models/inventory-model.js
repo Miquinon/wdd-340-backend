@@ -62,41 +62,29 @@ async function addClassification(classification_name) {
  *  add inventory submission
  * ************************** */
 
-async function addInventory(req, res) {
+async function addInventory(inv_make, inv_model, inv_year, 
+  inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, 
+  inv_color, classification_id) {
   try {
-      const { inv_make, inv_model, inv_year, inv_price, inv_description, inv_image, inv_thumbnail, classification_id } = req.body;
-      
-      // Server-side validation
-      if (!inv_make || !inv_model || !inv_year || !inv_price || !classification_id) {
-          return res.status(400).send("All required fields must be filled.");
-      }
-
-      // Add the new inventory to the database
-      const result = await invModel.addNewInventory({
-          inv_make,
-          inv_model,
-          inv_year,
-          inv_price,
-          inv_description,
-          inv_image,
-          inv_thumbnail,
-          classification_id
-          
-      });
-
-      if (result) {
-          // Redirect to a success page or inventory list
-          res.redirect('/inventory/add-inventory');
-      } else {
-          res.status(500).send("Error adding inventory.");
-      }
+    const sql =
+      "INSERT INTO public.inventory (inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *"
+    const data = await pool.query(sql, [
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id,
+    ])
+    return data.rows[0]
   } catch (error) {
-      console.error(error);
-      res.status(500).send("An error occurred.");
+    console.error("model error: " + error)
   }
 }
-
-
 
 
 

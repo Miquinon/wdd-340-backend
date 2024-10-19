@@ -74,6 +74,7 @@ h1, h2{
 main h1{
   font-size: 30px;
   text-align: center;
+  padding-top: 30px;
 }
 
 .under img{
@@ -428,6 +429,22 @@ input:required:invalid, input:focus:invalid {
   font-size: 15px;
 }
 
+/* Classification form*/
+
+.class-name{
+  font-size: 20px;
+}
+
+#classification_name{
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
 /* add inventory form*/
 
 #add-inventory{
@@ -455,7 +472,28 @@ input:required:invalid, input:focus:invalid {
   height: 30px;
 }
 
+#messages li{
+  color: #1857E0;
+  font-size: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  width: 250px;
+}
 
+.add-class, .add-inv{
+  color: black;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.manage{
+  text-align: center;
+}
+
+
+.add-class:hover, .add-inv:hover{
+  color:#1857E0;
+}
 
 
 }
