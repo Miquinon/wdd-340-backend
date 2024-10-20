@@ -40,6 +40,11 @@ router.post(
   }
 )
 
+// Default route for logged-in users
+router.get('/account', utilities.handleErrors(accountController.buildUserView));
+
+
+
 
 
 // Error-handling middleware
