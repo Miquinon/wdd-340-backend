@@ -25,6 +25,7 @@ async function buildLogin(req, res, next) {
     res.render('account/login', {
       title: "Login",              
       nav,
+      flash: req.flash(),
       errors: null,
     });
 }
@@ -37,6 +38,7 @@ async function buildRegister(req, res, next) {
   res.render('account/registration', {
       title: "Register",
       nav,
+      flash: req.flash(),
       errors: null,
   });
 }
@@ -94,6 +96,32 @@ try {
 }
 
 
+/*User View*/ 
+
+async function buildUserView(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/user", {
+    title: "Logged In",
+    nav,
+    flash: req.flash(),
+    errors: null,
+  })
+  
+}
+
+
+/* Account Management*/ 
+async function buildAccountManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/account-management", {
+    title: "Logged In",
+    nav,
+    flash: req.flash(),
+    errors: null,
+  })
+  
+}
+
 
 /* ****************************************
  *  Process login request
@@ -138,17 +166,6 @@ async function accountLogin(req, res) {
 }
 
 
-/*User View*/ 
-
-async function buildUserView(req, res, next) {
-  let nav = await utilities.getNav()
-  res.render("account/user", {
-    title: "Logged In",
-    nav,
-    flash: req.flash(),
-    errors: null,
-  })
-}
 
 
 
@@ -158,6 +175,6 @@ async function buildUserView(req, res, next) {
 
 
 
-module.exports = { buildLogin, getMyAccount, buildRegister, registerAccount, accountLogin, buildUserView};
+module.exports = { buildLogin, getMyAccount, buildRegister, registerAccount, accountLogin, buildUserView, buildAccountManagement};
 
 

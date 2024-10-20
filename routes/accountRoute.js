@@ -41,10 +41,10 @@ router.post(
 )
 
 // Default route for logged-in users
-router.get('/account', utilities.handleErrors(accountController.buildUserView));
+router.get('/', utilities.checkLogin, utilities.handleErrors(accountController.buildUserView));
 
 
-
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
 
 // Error-handling middleware

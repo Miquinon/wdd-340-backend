@@ -20,6 +20,14 @@ router.get("/add-classification", invController.buildAddClassification);
 // Route for Management view
 router.get("/management", utilities.handleErrors(invController.buildManagementView));
 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+router.get("/edit-inventory/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
+
+router.post("/update/", utilities.handleErrors(invController.updateInventory))
+
+
 // Route to process the classification form submission
 router.post("/add-classification", 
   validate.addClassificationRules(), 
@@ -35,6 +43,12 @@ router.post('/add-inventory', invController.addInventory);
 
 // Intentional 500 Error Route
 router.get("/cause-error", invController.causeServerError);
+
+
+
+
+
+
 
 module.exports = router;
 
