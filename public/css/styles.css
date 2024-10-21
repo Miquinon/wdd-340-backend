@@ -506,7 +506,15 @@ input:required:invalid, input:focus:invalid {
   padding: 10px;
 }
 
+/* Delete Inventory*/
 
+#delete-inventory{
+  height: 450px;
+}
+
+#delete-inv{
+  padding: 10px;
+}
 
 
 
