@@ -496,4 +496,18 @@ input:required:invalid, input:focus:invalid {
 }
 
 
+/* Update Inventory*/
+#update-inventory{
+  height: 975px;
+}
+
+#update-inv{
+  margin-top: 20px;
+  padding: 10px;
+}
+
+
+
+
+
 }

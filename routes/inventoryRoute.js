@@ -22,10 +22,17 @@ router.get("/management", utilities.handleErrors(invController.buildManagementVi
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
-router.get("/edit-inventory/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
+//Edit Inventory
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
+router.post("/edit-inventory/", utilities.handleErrors(invController.updateInventory))
 
 
-router.post("/update/", utilities.handleErrors(invController.updateInventory))
+//Delete Inventory
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView))
+
+router.post("/delete-confirm/", utilities.handleErrors(invController.deleteInventory))
 
 
 // Route to process the classification form submission
@@ -39,7 +46,7 @@ router.get("/add-inventory", utilities.handleErrors(invController.buildInventory
 
 
 //route to process add inventory form
-router.post('/add-inventory', invController.addInventory);
+router.post('/add-inventory', utilities.handleErrors(invController.addInventory));
 
 // Intentional 500 Error Route
 router.get("/cause-error", invController.causeServerError);

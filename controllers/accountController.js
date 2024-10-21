@@ -10,7 +10,7 @@ require("dotenv").config()
 * *************************************** */
 async function getMyAccount(req, res, next) {
     let nav = await utilities.getNav();
-    res.render('account/login', {  
+    res.render('account/account-management', {  
       title: "My Account",         
       nav,
       errors: null,
@@ -100,7 +100,7 @@ try {
 
 async function buildUserView(req, res, next) {
   let nav = await utilities.getNav()
-  res.render("account/user", {
+  res.render("inventory/management", {
     title: "Logged In",
     nav,
     flash: req.flash(),
@@ -113,7 +113,7 @@ async function buildUserView(req, res, next) {
 /* Account Management*/ 
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
-  res.render("account/account-management", {
+  res.render("inventory/management", {
     title: "Logged In",
     nav,
     flash: req.flash(),
