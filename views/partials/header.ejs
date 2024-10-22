@@ -3,11 +3,11 @@
       <a href="/" title="Return to home page">CSE Motors</a>
     </span>
     <div id="tools">
-      <!-- Conditionally render "My Account" or "Logout" based on login status -->
-    <% if (!locals.loggedInUser) { %>  <!-- If the user is NOT logged in -->
-      <a title="Click to log in" href="/account/login">My Account</a>
-    <% } else { %>  <!-- If the user IS logged in -->
-      <a title="Click to log out" href="/account/logout">Logout</a>
-    <% } %>
+      <% if (locals.loggedIn) { %>
+        <a class="welcome-link" href="/account/accManagement">Welcome <%= locals.accountData.account_firstname %></a>
+        <a class="logout-link" href="/account/logout">Logout</a>
+      <% } else { %>
+        <a class="account-link" href="/account/login">My Account</a>
+      <% } %>
     </div>
 </header>

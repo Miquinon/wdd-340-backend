@@ -46,6 +46,26 @@ router.get('/', utilities.checkLogin, utilities.handleErrors(accountController.b
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
+//Route to Logout
+router.get('/logout', utilities.handleErrors(accountController.accountLogout));
+
+//Route to Account Management
+router.get("/account-management",utilities.handleErrors(accountController.buildAccountManagement))
+
+//Route to Update Account View
+router.get("/update/:account_id", utilities.checkLogin, utilities.checkLogin,utilities.handleErrors(accountController.buildAccountUpdate));
+
+//Route to account update
+router.post("/account-update",utilities.checkLogin,
+regValidate.validate.updateAccountRules(),
+regValidate.validate.checkUpdatedData,
+utilities.handleErrors(accountController.accountUpdate)); 
+
+//Route to change password
+router.post("/change-password",utilities.checkLogin,
+regValidate.validate.changePasswordRules(), utilities.handleErrors(accountController.changePassword));
+
+
 
 // Error-handling middleware
 router.use((err, req, res, next) => {

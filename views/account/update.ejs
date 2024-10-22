@@ -1,0 +1,52 @@
+<h1><%= title %></h1>
+
+    <%- messages() %> 
+
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <% if (errors) { %>
+    <ul class="message warning">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+<div id="update-forms">
+  <fieldset class="updateForm">
+    <form action="/account/account-update" method="post">
+      <h2>User Information</h2>
+        <label for="account_firstname">First Name:</label>
+        <input type="text" id="firstName" name="account_firstname" required value="<%= locals.account_firstname %>">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="account_lastname" required value="<%= locals.account_lastname %>">
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>">
+        <input id="upDacc" type="submit" value="Update Account">
+        <input type="hidden" name="account_id"
+        <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+        <% } %>>
+      
+   </form>
+  </fieldset>
+
+    <fieldset class="updatePassword">
+        <form action="/account/change-password" method="post">
+            <h2>User Information</h2> 
+            <label for="password">Change your password:</label>
+            <input type="password" id="password" name="account_password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$" required>
+          <h3>Password Requirements</h3>
+          <div class="pw-requirements">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</div>
+            <input id="cp" type="submit" value="Change Password">
+            <input type="hidden" name="account_id"
+            <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+            <% } %>>
+
+        </form>
+    </fieldset>
+</div>

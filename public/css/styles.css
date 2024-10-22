@@ -517,5 +517,39 @@ input:required:invalid, input:focus:invalid {
 }
 
 
+/* Update forms*/
+
+#update-forms{
+display: flex;
+
+}
+
+.updateForm{
+  margin-left: -300px;
+}
+
+.updateForm input{
+  width: 250px;
+}
+
+
+.updatePassword{
+  margin-left: 300px;
+}
+
+
+.updatePassword h3{
+  margin-bottom: 0;
+}
+
+.updatePassword input{
+  width: 250px;
+}
+
+#upDacc, #cp{
+  margin-top: 20px;
+  padding: 10px;
+}
+
 
 }
