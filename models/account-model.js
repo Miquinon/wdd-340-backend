@@ -62,55 +62,140 @@ async function checkExistingEmailUpdate(account_email, account_id){
 /* *****************************
 * Get Account by Id
 * *************************** */
-async function getAccountById (account_id) {
+// async function getAccountById (account_id) {
+//   try {
+//     const result = await pool.query(
+//       'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_id = $1',
+//       [account_id])
+//     return result.rows[0]
+//   } catch (error) {
+//     return new Error("No matching id found")
+//   }
+// }
+
+
+
+async function getAccountById(account_id) {
   try {
     const result = await pool.query(
       'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_id = $1',
-      [account_id])
-    return result.rows[0]
+      [account_id]
+    );
+
+    if (result.rows.length === 0) {
+      // If no account is found, you can throw an error or return null
+      throw new Error("No matching id found");
+    }
+
+    return result.rows[0]; // Return the found account
   } catch (error) {
-    return new Error("No matching id found")
+    console.error("Error fetching account by ID:", error.message);
+    throw error; // Propagate the error for handling in the calling function
   }
 }
+
 
 /* *****************************
 * Update Account 
 * *************************** */
-async function updateAccount(account_firstname, account_lastname, account_email, account_id){
+// async function updateAccount(account_firstname, account_lastname, account_email, account_id){
+//   try {
+//     const sql =
+//     'UPDATE public.account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *'
+//     const data = await pool.query(sql, [
+//       account_firstname,
+//       account_lastname,
+//       account_email,
+//       account_id,
+//     ])
+//     return data.rows[0]
+//   } catch (error) {
+//     console.error("Unable to process account updates.")
+//   }
+// }
+
+
+
+async function updateAccount(account_firstname, account_lastname, account_email, account_id) {
   try {
-    const sql =
-    'UPDATE public.account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *'
+    const sql = `
+      UPDATE public.account 
+      SET account_firstname = $1, 
+          account_lastname = $2, 
+          account_email = $3 
+      WHERE account_id = $4 
+      RETURNING *`;
+
     const data = await pool.query(sql, [
       account_firstname,
       account_lastname,
       account_email,
       account_id,
-    ])
-    return data.rows[0]
+    ]);
+
+    if (data.rows.length === 0) {
+      // If no rows were updated, the account_id might be invalid
+      throw new Error("Account not found or no changes made.");
+    }
+
+    return data.rows[0]; // Return the updated account data
   } catch (error) {
-    console.error("Unable to process account updates.")
+    console.error("Unable to process account updates:", error.message);
+    throw error; // Throw the error to be handled by the calling function
   }
 }
+
+
+
 
 /* *****************************
 * Update Password 
 * *************************** */
-async function changePassword(account_password, account_id){
-  try {
-    const sql =
-    'UPDATE public.account SET account_password = $1 WHERE account_id = $2 RETURNING *'
-    const data = await pool.query(sql, [
-      account_password,
-      account_id,
-    ])
+// async function changePassword(account_password, account_id){
+//   try {
+//     const sql =
+//     'UPDATE public.account SET account_password = $1 WHERE account_id = $2 RETURNING *'
+//     const data = await pool.query(sql, [
+//       account_password,
+//       account_id,
+//     ])
 
-    return data.rows[0]
+//     return data.rows[0]
+//   } catch (error) {
+//     console.error("Unable to change account password.")
+//   }
+// }
+
+
+// const bcrypt = require('bcrypt'); // Ensure you have bcrypt installed
+
+async function changePassword(newPassword, account_id) {
+  try {
+    // Hash the new password before storing it
+    const hashedPassword = await bcrypt.hash(newPassword, 10); // 10 is the salt rounds
+
+    const sql = `
+      UPDATE public.account 
+      SET account_password = $1 
+      WHERE account_id = $2 
+      RETURNING *`;
+
+    const data = await pool.query(sql, [
+      hashedPassword,
+      account_id,
+    ]);
+
+    if (data.rows.length === 0) {
+      // If no rows were updated, the account_id might be invalid
+      throw new Error("Account not found or no changes made.");
+    }
+
+    return data.rows[0]; // Return the updated account data
   } catch (error) {
-    console.error("Unable to change account password.")
+    console.error("Unable to change account password:", error.message);
+    throw error; // Throw the error to be handled by the calling function
   }
 }
-
-
 
 
 

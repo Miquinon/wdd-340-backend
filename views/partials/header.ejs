@@ -3,11 +3,11 @@
       <a href="/" title="Return to home page">CSE Motors</a>
     </span>
     <div id="tools">
-      <% if (locals.loggedIn) { %>
-        <a class="welcome-link" href="/account/accManagement">Welcome <%= locals.accountData.account_firstname %></a>
-        <a class="logout-link" href="/account/logout">Logout</a>
+      <% if (res.locals.loggedIn) { %>
+        <a class="welcome" href="/account/account-management">Welcome <%= res.locals.accountData.account_firstname %></a>
+        <a class="logout" href="/account/logout">Logout</a>
       <% } else { %>
-        <a class="account-link" href="/account/login">My Account</a>
+        <a class="account" href="/account/login">My Account</a>
       <% } %>
     </div>
 </header>

@@ -183,7 +183,9 @@ async function buildAccountUpdate(req, res, next) {
     errors: null,
   })
 }
-
+/* ****************************************
+ *  Account Update
+ * ************************************ */
  async function accountUpdate (req, res, next) {
   const{account_firstname,
     account_lastname,
@@ -203,7 +205,7 @@ async function buildAccountUpdate(req, res, next) {
     const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
 
     res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
-    res.redirect("/account/accManagement")
+    res.redirect("/account/account-management")
     req.flash("notice",`${updatedName}'s account was successfully updated.`)
   } else {
     req.flash("notice", "Sorry, the update failed.");
@@ -244,7 +246,7 @@ async function changePassword(req, res) {
   if (updateResult){
     const updatedName = updateResult.account_firstname + " " + updateResult.account_lastname
     req.flash("notice",`${updatedName}'s password was successfully updated.`)
-    res.redirect("/account/accManagement")
+    res.redirect("/account/account-management")
 
   } else {
     req.flash("notice", "Sorry, the password update failed.");
@@ -266,7 +268,7 @@ async function changePassword(req, res) {
  *  Process logout
  * ************************************ */
 async function accountLogout(req, res) {
-  let nav = await utilities.getNav()
+  // let nav = await utilities.getNav()
    req.flash("notice", "You're logged out.")
    res.clearCookie("jwt");
    return res.redirect("/")
@@ -278,6 +280,7 @@ async function accountLogout(req, res) {
 
 
 module.exports = { buildLogin, getMyAccount, buildRegister, 
-  registerAccount, accountLogin, buildUserView, buildAccountManagement, buildAccountUpdate, changePassword, accountLogout};
+  registerAccount, accountLogin, buildUserView, buildAccountManagement, buildAccountUpdate,
+   changePassword, accountLogout, accountUpdate};
 
 
