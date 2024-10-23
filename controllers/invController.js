@@ -118,6 +118,9 @@ invCont.buildInventory = async function (req, res, next) {
 
     
 
+/* ***************************
+ *  Add-inventory 
+ * ************************** */
 
   invCont.addInventory = async function (req, res, next) {
     let nav = await utilities.getNav()

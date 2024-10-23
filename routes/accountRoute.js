@@ -81,5 +81,20 @@ router.use((err, req, res, next) => {
   res.status(500).render('error', { title: 'Error', error: err }); // Render a user-friendly error page
 });
 
+
+//Finace view
+router.get('/finance', utilities.handleErrors(accountController.buildFinance));
+
+
+//Submit Finance
+router.post('/account-management', utilities.handleErrors(accountController.submitFinance)); 
+
+
+
+
+
+
+
+
 // Export the router
 module.exports = router;
