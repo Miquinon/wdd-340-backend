@@ -54,22 +54,23 @@ router.get("/account-management",utilities.handleErrors(accountController.buildA
 
 //Route to Update Account View
 router.get("/update/:account_id", 
-utilities.checkLogin,
+// utilities.checkLogin,
 utilities.handleErrors(accountController.buildAccountUpdate));
 
 
 
 //Route to account update
-router.post("/account/account-update",utilities.checkLogin,
-regValidate.validate.updateAccountRules(),
-regValidate.validate.checkUpdatedData,
-utilities.handleErrors(accountController.accountUpdate)); 
+router.post("/account-update", utilities.handleErrors(accountController.accountUpdate)); 
+// utilities.checkLogin,
+// regValidate.validate.updateAccountRules(),
+// regValidate.validate.checkUpdatedData,
+
 
 //Route to change password
-router.post("/account/change-password",
-utilities.checkLogin,
-regValidate.validate.changePasswordRules(), 
-utilities.handleErrors(accountController.changePassword));
+router.post("/change-password", utilities.handleErrors(accountController.changePassword));
+// utilities.checkLogin,
+// regValidate.validate.changePasswordRules(), 
+
 
 
 
