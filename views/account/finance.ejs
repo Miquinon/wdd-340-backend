@@ -2,13 +2,13 @@
 
     <%- messages() %> 
 
-<% if (errors) { %>
+<!-- <% if (errors) { %>
     <ul class="notice">
    <% errors.array().forEach(error => { %>
      <li><%= error.msg %></li>
   <%  }) %>
    </ul>
-  <% } %>
+  <% } %> -->
 
   <% if (errors) { %>
     <ul class="message warning">
@@ -18,26 +18,21 @@
    </ul>
   <% } %>
 
-  <div>
-        <h2>Select Your Vehicle</h2><br><br>
 
-        <p>Select your vehicle classsification</p>
+    <!-- Classification Dropdown -->
+    <label for="classification">Choose a Classification:</label>
+    <%- classificationSelect %>
 
-            <%- classificationSelect %> 
-
-        <p>Select your vehicle</p>
-
-            <%- classificationSelect %> 
-  </div>
+ 
 
 <form action="/account/account-management" method="post">
     <fieldset>
       <legend>Personal Informaiton</legend>
         <label for="firstname" > First Name</label>
-        <input type="text" id="firstname">
+        <input type="text" id="firstname" required>
 
         <label for="lastname">Last Name</label>
-        <input type="text" id="lastname">
+        <input type="text" id="lastname" required>
 
         <label for="email">Email</label>
         <input type="email" id="email" required pattern="">

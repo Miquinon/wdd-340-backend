@@ -50,16 +50,6 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
-// // utilities.js
-// async function getInv() {
-//   try {
-//     const result = await invModel.getAllInventory(); // Example function call, adjust as necessary
-//     return result.rows;
-//   } catch (error) {
-//     console.error("Error fetching inventory:", error);
-//     return []; // Return an empty array or handle the error as needed
-//   }
-// }
 
 
 /* ****************************************
@@ -179,6 +169,27 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login");
   }
 };
+
+
+// Function to build the vehicle dropdown list based on selected classification
+Util.buildVehicleList = async function (classification_id) {
+  let data = await invModel.getVehiclesByClassification(classification_id);
+  let vehicleList =
+    '<select name="vehicle_id" id="vehicleList" required>';
+  vehicleList += "<option value=''>Choose a Vehicle</option>";
+
+  data.rows.forEach((row) => {
+    vehicleList +=
+      '<option value="' + row.classification_id + '">' + row.inv_make + "</option>";
+  });
+
+  vehicleList += "</select>";
+  return vehicleList;
+};
+
+
+
+
 
 
 

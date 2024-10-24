@@ -113,9 +113,11 @@ async function buildUserView(req, res, next) {
 /* Account Management*/ 
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
+  let accountData = req.session.accountData;
   res.render("inventory/management", {
     title: "Logged In",
     nav,
+    accountData,
     flash: req.flash(),
     errors: null,
   })
@@ -246,7 +248,7 @@ async function accountLogout(req, res) {
   // let nav = await utilities.getNav()
    req.flash("notice", "You're logged out.")
    res.clearCookie("jwt");
-   return res.redirect("/")
+   return res.redirect("/account")
 }
 
 
@@ -256,7 +258,7 @@ async function accountLogout(req, res) {
 * *************************************** */
 async function buildFinance(req, res, next) {
   let nav = await utilities.getNav();
-  const classificationSelect = utilities.buildClassificationList();
+   const classificationSelect = utilities.buildClassificationList();
   res.render("account/finance", {
     title: "Finance Application",              
     nav,
