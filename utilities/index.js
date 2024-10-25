@@ -171,22 +171,61 @@ Util.checkJWTToken = (req, res, next) => {
 };
 
 
-// Function to build the vehicle dropdown list based on selected classification
-Util.buildVehicleList = async function (classification_id) {
-  let data = await invModel.getVehiclesByClassification(classification_id);
-  let vehicleList =
-    '<select name="vehicle_id" id="vehicleList" required>';
-  vehicleList += "<option value=''>Choose a Vehicle</option>";
+// // Function to build the vehicle dropdown list based on selected classification
+// Util.buildVehicleList = async function (classification_id) {
+//   let data = await invModel.getVehiclesByClassification(classification_id);
+//   let vehicleList =
+//     '<select name="vehicle_id" id="vehicleList" required>';
+//   vehicleList += "<option value=''>Choose a Vehicle</option>";
+
+//   data.rows.forEach((row) => {
+//     vehicleList +=
+//       '<option value="' + row.classification_id + '">' + row.inv_make + "</option>";
+//   });
+
+//   vehicleList += "</select>";
+//   return vehicleList;
+// };
+
+
+
+
+// // Function to build the vehicle dropdown list based on selected classification
+// Util.buildVehicleList = async function (classification_id) {
+//   let data = await invModel.getVehiclesByClassification(classification_id);
+//   let vehicleList =
+//     '<select name="classification_id" id="vehicleList" required>';
+//   vehicleList += "<option value=''>Choose a Vehicle</option>";
+
+//   data.rows.forEach((row) => {
+//     vehicleList +=
+//       '<option value="' + row.classification_id + '">' + row.inv_make + "</option>";
+//   });
+
+//   vehicleList += "</select>";
+//   return vehicleList;
+// };
+
+
+// Function to build the second dropdown based on selected classification
+Util.buildModelList = async function (classification_id = null, model_id = null) {
+  if (!classification_id) return ''; // If no classification is selected, return an empty string
+
+  let data = await invModel.getModelsByClassification(classification_id); // Fetch models for the classification
+  let modelList = '<select name="model_id" id="modelList" required>';
+  modelList += "<option value=''>Choose a Model</option>";
 
   data.rows.forEach((row) => {
-    vehicleList +=
-      '<option value="' + row.classification_id + '">' + row.inv_make + "</option>";
+    modelList += '<option value="' + row.model_id + '"';
+    if (model_id != null && row.model_id == model_id) {
+      modelList += " selected ";
+    }
+    modelList += ">" + row.model_name + "</option>";
   });
 
-  vehicleList += "</select>";
-  return vehicleList;
-};
-
+  modelList += "</select>";
+  return modelList;
+}
 
 
 

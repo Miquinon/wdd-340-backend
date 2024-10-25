@@ -253,19 +253,50 @@ async function accountLogout(req, res) {
 
 
 
-/* ****************************************
-*  Fianance View
-* *************************************** */
+// /* ****************************************
+// *  Fianance View
+// * *************************************** */
+// async function buildFinance(req, res, next) {
+//   let nav = await utilities.getNav();
+//    const classificationSelect = utilities.buildClassificationList();
+//    let vehicleSelect = "";
+//    if (req.body.classification_id) {
+//     vehicleSelect = await Util.buildVehicleList(req.body.classification_id);
+//   }
+//   res.render("account/finance", {
+//     title: "Finance Application",              
+//     nav,
+//     classificationSelect,
+//     vehicleSelect, 
+//     flash: req.flash(),
+//     errors: null,
+//   });
+// }
+
 async function buildFinance(req, res, next) {
-  let nav = await utilities.getNav();
-   const classificationSelect = utilities.buildClassificationList();
-  res.render("account/finance", {
-    title: "Finance Application",              
-    nav,
-    classificationSelect,
-    flash: req.flash(),
-    errors: null,
-  });
+  try {
+    let nav = await utilities.getNav();
+
+    // First dropdown: Classifications
+    const classificationSelect = await utilities.buildClassificationList(req.body.classification_id);
+
+    // Second dropdown: Models (only populated if a classification is selected)
+    let modelSelect = "";
+    if (req.body.classification_id) {
+      modelSelect = await utilities.buildModelList(req.body.classification_id, req.body.model_id);
+    }
+
+    res.render("account/finance", {
+      title: "Finance Application",              
+      nav,
+      classificationSelect,  // First dropdown
+      modelSelect,           // Second dropdown
+      flash: req.flash(),
+      errors: null,
+    });
+  } catch (error) {
+    next(error);
+  }
 }
 
 

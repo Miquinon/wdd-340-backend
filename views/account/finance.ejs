@@ -23,7 +23,11 @@
     <label for="classification">Choose a Classification:</label>
     <%- classificationSelect %>
 
- 
+   <!-- Model Dropdown (if available) -->
+   <% if (modelSelect) { %>
+    <label for="model">Choose a Model:</label>
+    <%- modelSelect %>
+  <% } %>
 
 <form action="/account/account-management" method="post">
     <fieldset>
