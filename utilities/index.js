@@ -171,44 +171,9 @@ Util.checkJWTToken = (req, res, next) => {
 };
 
 
-// // Function to build the vehicle dropdown list based on selected classification
-// Util.buildVehicleList = async function (classification_id) {
-//   let data = await invModel.getVehiclesByClassification(classification_id);
-//   let vehicleList =
-//     '<select name="vehicle_id" id="vehicleList" required>';
-//   vehicleList += "<option value=''>Choose a Vehicle</option>";
-
-//   data.rows.forEach((row) => {
-//     vehicleList +=
-//       '<option value="' + row.classification_id + '">' + row.inv_make + "</option>";
-//   });
-
-//   vehicleList += "</select>";
-//   return vehicleList;
-// };
-
-
-
-
-// // Function to build the vehicle dropdown list based on selected classification
-// Util.buildVehicleList = async function (classification_id) {
-//   let data = await invModel.getVehiclesByClassification(classification_id);
-//   let vehicleList =
-//     '<select name="classification_id" id="vehicleList" required>';
-//   vehicleList += "<option value=''>Choose a Vehicle</option>";
-
-//   data.rows.forEach((row) => {
-//     vehicleList +=
-//       '<option value="' + row.classification_id + '">' + row.inv_make + "</option>";
-//   });
-
-//   vehicleList += "</select>";
-//   return vehicleList;
-// };
-
 
 // Function to build the second dropdown based on selected classification
-Util.buildModelList = async function (classification_id = null, model_id = null) {
+Util.buildModelList = async function (classification_id = null, inv_make = null) {
   if (!classification_id) return ''; // If no classification is selected, return an empty string
 
   let data = await invModel.getModelsByClassification(classification_id); // Fetch models for the classification
@@ -216,11 +181,11 @@ Util.buildModelList = async function (classification_id = null, model_id = null)
   modelList += "<option value=''>Choose a Model</option>";
 
   data.rows.forEach((row) => {
-    modelList += '<option value="' + row.model_id + '"';
-    if (model_id != null && row.model_id == model_id) {
+    modelList += '<option value="' + row.inv_make + '"';
+    if (model_id != null && row.inv_make == inv_make) {
       modelList += " selected ";
     }
-    modelList += ">" + row.model_name + "</option>";
+    modelList += ">" + row.inv_make + "</option>";
   });
 
   modelList += "</select>";

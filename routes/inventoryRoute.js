@@ -18,8 +18,8 @@ router.get("/detail/:invId", invController.buildByVehicleId);
 router.get("/add-classification", invController.buildAddClassification);
 
 // Route for Management view
-// router.get("/management", utilities.handleErrors(invController.buildManagementView));
- router.get("/management", utilities.checkLogin, utilities.checkClearance, utilities.handleErrors(invController.buildManagementView));
+
+router.get("/management", utilities.checkLogin, utilities.checkClearance, utilities.handleErrors(invController.buildManagementView));
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 

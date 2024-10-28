@@ -11,7 +11,7 @@ h1, h2{
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-p, a, nav, li, input, label{
+p, a, nav, li, input, label, legend{
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -175,6 +175,154 @@ hr{
   border: none;
   border-bottom: 2px solid #1857E0;
 }
+
+
+/* Inventory Management*/
+.manage{
+  margin-top: 50px;
+}
+
+#select-class p{
+  margin-top: 20px;
+}
+
+#classificationList{
+  margin-bottom: 40px;
+}
+
+#inventoryDisplay{
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+#inventoryDisplay th{
+  padding-bottom: 20px;
+}
+
+
+/* Update Inventory*/
+
+#update-inventory{
+  width: 300px;
+  margin-left: 25px;
+  margin-bottom: 75px;
+}
+
+#updateForm{
+  display: grid;
+  background-color: #1857E0;
+  color: white;
+  width: 350px;
+  padding-top: 15px;
+}
+
+#updateForm input{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  height: 35px;
+  width: 300px;
+}
+
+#updateForm label{
+  margin-left: 10px;
+}
+
+#updateForm textarea{
+  width: 300px;
+  height: 200px;
+  margin: 10px;
+}
+
+#classificationList{
+  width: 300px;
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 35px;
+}
+
+/*Delete Inventory*/
+
+#delete-inventory{
+  width: 300px;
+  margin-left: 25px;
+  margin-bottom: 75px;
+}
+
+#deleteForm{
+  display: grid;
+  background-color: #1857E0;
+  color: white;
+  width: 350px;
+  padding-top: 15px;
+}
+
+#deleteForm input{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  height: 35px;
+  width: 300px;
+}
+
+#deleteForm label{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#deleteForm p{
+  margin-left: 10px;
+}
+
+
+/*Add Classification*/
+
+#addClass{
+  width: 300px;
+  margin-left: 25px;
+  margin-bottom: 75px;
+}
+
+#add-classification-form{
+  display: grid;
+  background-color: #1857E0;
+  color: white;
+  width: 350px;
+  padding-top: 15px;
+}
+
+#add-classification-form input{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  height: 35px;
+  width: 300px;
+}
+
+#add-classification-form label{
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+#add-classification-form span{
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /****************** DESKTOP VIEW **********/
@@ -349,7 +497,7 @@ fieldset{
   width: 300px;
   height: 400px;
   position: relative;
-  left: 425px;
+  left: 350px;
   background-color: #1857E0;
   color: white;
   border: 2px solid black;
@@ -506,10 +654,19 @@ input:required:invalid, input:focus:invalid {
   padding: 10px;
 }
 
+#inventoryDisplay{
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+#inventoryDisplay th{
+  padding-bottom: 20px;
+}
+
 /* Delete Inventory*/
 
 #delete-inventory{
-  height: 450px;
+  height: 600px;
 }
 
 #delete-inv{
@@ -518,6 +675,12 @@ input:required:invalid, input:focus:invalid {
 
 
 /* Update forms*/
+
+#class-finance{
+  margin-top: 100px;
+}
+
+
 
 #update-forms{
 display: flex;
@@ -550,6 +713,52 @@ display: flex;
   margin-top: 20px;
   padding: 10px;
 }
+
+
+legend{
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#personal{
+  height: 650px;
+
+}
+
+#state, #employment-status{
+  width: 200px;
+  height: 30px;
+}
+
+
+#financials{
+  height: 375px;
+  border: #000 2px solid;
+  background-color: #1857E0 ;
+  margin-left: 100px;
+}
+
+#money{
+  display: flex;
+  margin-left: -100px;
+  margin-top: -50px;
+
+}
+
+#money input{
+  width: 250px;
+}
+
+#sub-finance{
+  margin-top: 40px;
+  height: 35px;
+  font-size: 25px;
+}
+
+
+
+
 
 
 }

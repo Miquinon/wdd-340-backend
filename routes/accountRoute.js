@@ -61,16 +61,11 @@ utilities.handleErrors(accountController.buildAccountUpdate));
 
 //Route to account update
 router.post("/account-update", utilities.handleErrors(accountController.accountUpdate)); 
-// utilities.checkLogin,
-// regValidate.validate.updateAccountRules(),
-// regValidate.validate.checkUpdatedData,
+
 
 
 //Route to change password
 router.post("/change-password", utilities.handleErrors(accountController.changePassword));
-// utilities.checkLogin,
-// regValidate.validate.changePasswordRules(), 
-
 
 
 
@@ -87,9 +82,10 @@ router.get('/finance', utilities.handleErrors(accountController.buildFinance));
 
 
 //Submit Finance
-router.post('/account-management', utilities.handleErrors(accountController.submitFinance)); 
+router.post('/account-management', utilities.handleErrors(accountController.submitFinanceForm)); 
 
-
+//Finance Confirmation
+router.get('/finance-confirmation', utilities.handleErrors(accountController.buildConfirmation));
 
 
 

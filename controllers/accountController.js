@@ -185,6 +185,7 @@ async function buildAccountUpdate(req, res, next) {
     errors: null,
   })
 }
+
 /* Account Update * ***************
 ********************* */
 async function accountUpdate(req, res, next) {  
@@ -209,6 +210,8 @@ async function accountUpdate(req, res, next) {
       errors: null,    
     });  
   }};
+
+
   /* **************************************** *  
        Change Password * **********************
   ************** */
@@ -241,6 +244,7 @@ async function accountUpdate(req, res, next) {
       });  
     }}
 
+
 /* ****************************************
  *  Process logout
  * ************************************ */
@@ -251,27 +255,7 @@ async function accountLogout(req, res) {
    return res.redirect("/account")
 }
 
-
-
-// /* ****************************************
-// *  Fianance View
-// * *************************************** */
-// async function buildFinance(req, res, next) {
-//   let nav = await utilities.getNav();
-//    const classificationSelect = utilities.buildClassificationList();
-//    let vehicleSelect = "";
-//    if (req.body.classification_id) {
-//     vehicleSelect = await Util.buildVehicleList(req.body.classification_id);
-//   }
-//   res.render("account/finance", {
-//     title: "Finance Application",              
-//     nav,
-//     classificationSelect,
-//     vehicleSelect, 
-//     flash: req.flash(),
-//     errors: null,
-//   });
-// }
+/*Build finance View */
 
 async function buildFinance(req, res, next) {
   try {
@@ -283,14 +267,14 @@ async function buildFinance(req, res, next) {
     // Second dropdown: Models (only populated if a classification is selected)
     let modelSelect = "";
     if (req.body.classification_id) {
-      modelSelect = await utilities.buildModelList(req.body.classification_id, req.body.model_id);
+      modelSelect = await utilities.buildModelList(req.body.classification_id, req.body.inv_make);
     }
 
     res.render("account/finance", {
       title: "Finance Application",              
       nav,
-      classificationSelect,  // First dropdown
-      modelSelect,           // Second dropdown
+      classificationSelect,  
+      modelSelect,           
       flash: req.flash(),
       errors: null,
     });
@@ -299,7 +283,68 @@ async function buildFinance(req, res, next) {
   }
 }
 
+/* Process Finance Form */
+async function submitFinanceForm(req, res, next) {
+  try {
+    const nav = await utilities.getNav();
+    const {
+      firstname,
+      lastname,
+      email,
+      phone_number,
+      street,
+      city,
+      zip,
+      state,
+      income,
+      employment_status,
+      employment_duration
+    } = req.body;
 
+    // Basic validation for required fields
+    if (
+      !firstname ||
+      !lastname ||
+      !email ||
+      !phone_number ||
+      !street ||
+      !city ||
+      !zip ||
+      !state ||
+      !income ||
+      !employment_status ||
+      !employment_duration
+    ) {
+      req.flash("error", "Please fill in all required fields.");
+      res.location(req.get("Referer") || "/");
+
+    }
+
+
+    // Render a confirmation page or redirect with a success message
+    res.render("account/finance-confirmation", {
+      title: "Finance Application Submitted",
+      message: "Your finance application has been successfully submitted!",
+      nav,
+      flash: req.flash(),
+      errors: null,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/* Build Confirmation View */
+async function buildConfirmation(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/finance-confirmation", {
+    title: "Finance Application Submitted",
+    nav,
+    flash: req.flash(),
+    errors: null,
+  })
+  
+}
 
 
 
@@ -309,6 +354,6 @@ async function buildFinance(req, res, next) {
 
 module.exports = { buildLogin, getMyAccount, buildRegister, 
   registerAccount, accountLogin, buildUserView, buildAccountManagement, buildAccountUpdate,
-   changePassword, accountLogout, accountUpdate, buildFinance};
+   changePassword, accountLogout, accountUpdate, buildFinance, submitFinanceForm, buildConfirmation};
 
 

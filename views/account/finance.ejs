@@ -20,7 +20,7 @@
 
 
     <!-- Classification Dropdown -->
-    <label for="classification">Choose a Classification:</label>
+    <label id="class-finance" for="classification">Choose a Classification:</label>
     <%- classificationSelect %>
 
    <!-- Model Dropdown (if available) -->
@@ -29,9 +29,9 @@
     <%- modelSelect %>
   <% } %>
 
-<form action="/account/account-management" method="post">
-    <fieldset>
-      <legend>Personal Informaiton</legend>
+<form id="money" action="/account/account-management" method="post">
+    <fieldset id="personal">
+      <legend>PERSONAL INFORMATION</legend>
         <label for="firstname" > First Name</label>
         <input type="text" id="firstname" required>
 
@@ -39,19 +39,19 @@
         <input type="text" id="lastname" required>
 
         <label for="email">Email</label>
-        <input type="email" id="email" required pattern="">
+        <input type="email" id="email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
 
         <label for="phone number">Phone Number</label>
         <input type="tel" required>
 
-        <label for="address">ADDRESS</label>
+        <label for="address">ADDRESS:</label>
         <label for="street">Street</label>
         <input type="text" required>
 
-        <label for="city">City:</label>
+        <label for="city">City</label>
         <input type="text" id="city" name="city" required>
 
-        <label for="zip">Postal/ZIP Code:</label>
+        <label for="zip">Postal/ZIP Code</label>
         <input type="text" id="zip" name="zip" pattern="[A-Za-z0-9\-]+" title="Please enter a valid postal code" required>
 
         <label for="state">State/Province:</label>
@@ -74,19 +74,18 @@
             <option value="TX">Texas</option>           <option value="UT">Utah</option>            <option value="VT">Vermont</option>
             <option value="VA">Virginia</option>        <option value="WA">Washington</option>      <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>       <option value="WY">Wyoming</option>
-    
+          </select>
     </fieldset>
 
-    <fieldset>
-    
-        <legend>Income</legend>
-          <label for="income">Yearly Income ($):</label>
+    <fieldset id="financials">
+      
+        <legend>FINANCIALS</legend>
+          <label for="income">Yearly Income</label>
           <input type="number" id="income" name="income" min="0" step="1000" placeholder="Enter your yearly income" required>
       
-        <legend>Employment</legend>
           <label for="employment-status">Employment Status:</label>
             <select id="employment-status" name="employment-status" required>
-              <option value="">Select your employment status</option>
+              <option value="">Select employment status</option>
               <option value="full-time">Full-time</option>
               <option value="part-time">Part-time</option>
               <option value="self-employed">Self-employed</option>
@@ -99,7 +98,7 @@
           <label for="employment-duration">Time at Current Employment (Years):</label>
           <input type="number" id="employment-duration" name="employment-duration" min="0" step="0.1" placeholder="Enter number of years" required>
       
-          <input type="submit" value="Submit">
+          <input type="submit" id="sub-finance" value="Submit">
 
     </fieldset>
   </form>
