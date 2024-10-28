@@ -177,6 +177,51 @@ hr{
 }
 
 
+/*Login*/
+#login{
+  background-color: #1857E0;
+  width: 350px;
+  margin-left: 25px;
+  margin-bottom: 75px;
+  margin-top: 50px;
+}
+
+
+#loginForm{
+  display: grid;
+  background-color: #1857E0;
+  color: white;
+}
+
+#loginForm input{
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  height: 35px;
+  width: 300px;
+}
+
+#loginForm label{
+  margin-top: 10px;
+  margin-left: 10px;
+  padding-left: 10px;
+  height: 35px;
+  width: 300px;
+}
+
+.pw-requirements{
+  width: 300px;
+  margin-left: 10px;
+}
+
+#no,  .sign-up{
+  color: white;
+}
+
+
+
+
+
 /* Inventory Management*/
 .manage{
   margin-top: 50px;
@@ -618,7 +663,7 @@ hr{
 
 fieldset{
   width: 300px;
-  height: 400px;
+  height: 475px;
   position: relative;
   left: 350px;
   background-color: #1857E0;
@@ -637,7 +682,7 @@ input, label{
 
 fieldset p{
   font-size: 18px;
-  text-align: center;
+  margin-left: 50px;
 }
 
 #pw, #email, #fname, #lname{
@@ -653,6 +698,7 @@ label{
   padding: 10px;
   background-color: white;
   border: 2px solid black;
+  height: 35px;
 
 }
 
